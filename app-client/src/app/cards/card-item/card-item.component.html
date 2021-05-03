@@ -1,0 +1,26 @@
+<mat-card class="card-item">
+  <mat-card-header (click)="openUpdateCardModal(card)">
+    <div mat-card-avatar class="example-header-image"></div>
+
+    <!-- Eğer card.name boş ise (veya) '-' olarak yaz  -->
+    <mat-card-title>{{ card.name || '-' }}</mat-card-title>
+
+    <!-- If Else yapısı ile birinci yöntem (ng-template ile) -->
+    <mat-card-subtitle *ngIf="card.title; else noTitle">{{ card.title }}</mat-card-subtitle>
+    <ng-template #noTitle>
+      <mat-card-subtitle>Meslek yok</mat-card-subtitle>
+    </ng-template>
+
+  </mat-card-header>
+  <mat-card-content>
+    <ul class="list-group">
+      <li class="list-group-item">{{ card.phone }}</li>
+      <li class="list-group-item">{{ card.email }}</li>
+
+      <!-- If Else yapısı ile ikinci yöntem -->
+      <li class="list-group-item" *ngIf="card.address">{{ card.address }}</li>
+      <li class="list-group-item" *ngIf="!card.address">E-posta adresi kayıtlı değil</li>
+
+    </ul>
+  </mat-card-content>
+</mat-card>
